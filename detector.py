@@ -41,7 +41,6 @@ def real_time_object_detection(interpreter, colors):
     count_330 = 0
     count_600 = 0
     count_1500 = 0
-    count_all = 0
 
     berat_total = 0
 
@@ -86,13 +85,15 @@ def real_time_object_detection(interpreter, colors):
                         # Botol 600ml = 390 x 140
                         # Botol 1500ml = 
 
+                        print("class: {}, p : {}, l : {}".format(predicted_class, panjang, lebar))
+
                         # 1 = 330, 2 = 600, 3 = 1500
                         ###################################
-                        if panjang < 310 and lebar < 110:
+                        if panjang < 100 and lebar < 240:
                             tipe_botol = 1
-                        elif (panjang > 320 and panjang < 400) and (lebar > 120 and lebar < 150):
+                        elif (panjang > 250 and panjang < 310) and (lebar > 120 and lebar < 150):
                             tipe_botol = 2
-                        elif panjang > 350 and lebar > 170:
+                        elif panjang > 250 and lebar > 160:
                             tipe_botol = 3
 
                         Status = True
@@ -102,7 +103,7 @@ def real_time_object_detection(interpreter, colors):
                     elif match_detect == 47 and elapsed > 1 :
                         Status = True
                             
-                        print("class: {}, p : {}, l : {}, time: {}, tipe_botol : {}".format(predicted_class, panjang, lebar, int(elapsed), tipe_botol))
+                        print("class: {}, p : {}, l : {}, time: {}, tipe : cup".format(predicted_class, panjang, lebar, int(elapsed)))
                     
                 else :
                     start = time.time()
@@ -111,7 +112,7 @@ def real_time_object_detection(interpreter, colors):
             
                 elapsedUnDetect = time.time() - start
 
-                print(elapsedUnDetect)
+                # print(elapsedUnDetect)
 
                 if  elapsedUnDetect > 30:
                     start = time.time()
